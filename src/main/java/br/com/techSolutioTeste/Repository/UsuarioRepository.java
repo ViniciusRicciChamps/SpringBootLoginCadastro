@@ -1,11 +1,13 @@
 package br.com.techSolutioTeste.Repository;
 
+
 import org.springframework.data.repository.CrudRepository;
 
 import br.com.techSolutioTeste.Model.Usuario;
 
+
 public interface UsuarioRepository extends CrudRepository<Usuario, String> {
 
-	Usuario findByUsuario(String loginUsuario);
+	Usuario findByLoginUsuario(String loginUsuario);
 	
 }

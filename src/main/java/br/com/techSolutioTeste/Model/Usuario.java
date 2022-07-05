@@ -10,10 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 public class Usuario implements UserDetails {
-
-
-	 
-	private static final long serialVersionUID = 1L;
 	 
 	@Id
 	private String loginUsuario;

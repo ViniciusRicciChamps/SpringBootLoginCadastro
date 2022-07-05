@@ -23,11 +23,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.GET, "/**").permitAll() // permite acesso total
-																									// a essa pagina
-				.antMatchers(HttpMethod.GET, "/adicionado").hasRole("USER").antMatchers(HttpMethod.POST, "/adicionado")
-				.hasRole("USER").anyRequest().authenticated().and().formLogin().permitAll().and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+		http
+		.csrf()
+		.disable()
+		.authorizeRequests()
+		.antMatchers(HttpMethod.GET, "/").permitAll() // permite acesso total// a essa pagina
+		.anyRequest().authenticated()
+		.and().formLogin().permitAll()
+		.and().logout()
+		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 	}
 
 	@Override
