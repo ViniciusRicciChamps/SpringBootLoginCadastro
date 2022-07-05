@@ -1,26 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="utf-8">
 <title>Produtos</title>
 <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+	crossorigin="anonymous">
 
 <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+	crossorigin="anonymous"></script>
 
 </head>
 <body>
-<div class="container">
-	<h1>Cadastrar Produtos</h1>
-	<form method="post" action="">
-		<input class="form-control" type="text" name="nomeProduto" style="margin:10px;" placeholder="Nome do produto"><br>
-        <input class="form-control" type="text" name="fornecedorProduto" style="margin:10px;" placeholder="Fornecedor do Produto"><br>
-        <input class="form-control" type="number" name="valorProduto" style="margin:10px;" placeholder="Valor do produto"><br>
-        <input class="btn btn-primary" type="submit" style="margin:10px;" value="Cadastrar"><br>
-        <input class="btn btn-secondary" type="submit" style="margin:10px;" value="Voltar"><br>
-	</form>
-</div>
-	
+	<div class="container">
+		<h1>Cadastrar Produtos</h1>
+		<form method="post" action="">
+			<input class="form-control" type="text" name="nomeProduto"
+				style="margin: 10px;" placeholder="Nome do produto"><br>
+			<input class="form-control" type="text" name="fornecedorProduto"
+				style="margin: 10px;" placeholder="Fornecedor do Produto"><br>
+			<input class="form-control" type="number" name="valorProduto"
+				style="margin: 10px;" placeholder="Valor do produto"><br>
+			<input class="btn btn-primary" type="submit" style="margin: 10px;"
+				value="Cadastrar"><br> <input class="btn btn-secondary"
+				type="submit" style="margin: 10px;" value="Voltar"><br>
+		</form>
+	</div>
+
 </body>
 </html>

@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
@@ -16,15 +17,20 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private ImplementsUserDetailsService userDetailsService;
+	//@Autowired
+	//private ImplementsUserDetailsService userDetailsService;
 	
+	
+	// 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
-		http.csrf().disable().authorizeRequests()
-		.antMatchers(HttpMethod.GET, "/").permitAll()
-		.antMatchers(HttpMethod.GET, "/").hasRole("ADMIN")
-		.antMatchers(HttpMethod.POST, "/cadastrarEvento").hasRole("ADMIN")
+		http
+		.csrf()
+		.disable()
+		.authorizeRequests()
+		.antMatchers(HttpMethod.GET, "/**").permitAll() // permite acesso total a essa pagina
+		.antMatchers(HttpMethod.GET, "/adicionado").hasRole("USER")
+		.antMatchers(HttpMethod.POST, "/adicionado").hasRole("USER")
 		.anyRequest().authenticated()
 		.and().formLogin().permitAll()
 		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
@@ -32,12 +38,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-		auth.userDetailsService(userDetailsService)
-		.passwordEncoder(new BCryptPasswordEncoder());
+		auth.inMemoryAuthentication()
+		.withUser("user").password("{noop}123").roles("USER");
 	}
 
+	/*
 	@Override
 	public void configure(WebSecurity web) throws Exception{
 		web.ignoring().antMatchers("/materialize/**", "/style/**");
-	}
+	}*/
 }

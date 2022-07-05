@@ -18,21 +18,21 @@ import br.com.techSolutioTeste.Repository.ProdutoRepository;
 @Controller
 public class ProdutosController {
 
-	//Injeção de dependencia
+	// Injeção de dependencia
 	@Autowired
 	private ProdutoRepository produtoRepository;
-	
-	@RequestMapping(value ="/cadastrarProduto", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/adicionarProduto", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	public String formulario() {
 		return "produtos/formProduto";
 	}
-	
-	@RequestMapping(value ="/cadastrarProduto", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/adicionado", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public String formulario(CadastroProdutos cadastroProdutos) {
 		produtoRepository.save(cadastroProdutos);
-		return "produtos/formProduto";
+		return "redirect:/produtos";
 	}
 	
 	@RequestMapping(value = "/produtos")
@@ -42,13 +42,13 @@ public class ProdutosController {
 		modelAndView.addObject("produtos", produto);
 		return modelAndView;
 	}
-	
-	 @DeleteMapping(value = "deletar")//mapeia a URL
-	    @ResponseBody // descrição da resposta
-	    public ResponseEntity<String> deletar(@RequestParam String idProduto){// RECEBE OS DADOS PARA SALVAR
-	    	produtoRepository.deleteById(idProduto);
-	    	return new ResponseEntity<String>("Usuario deletado com sucesso", HttpStatus.OK);
-	    	
-	    }
-	
+
+	@DeleteMapping(value = "deletar")
+	@ResponseBody
+	public ResponseEntity<String> deletar(@RequestParam String idProduto) {// RECEBE OS DADOS PARA SALVAR
+		produtoRepository.deleteById(idProduto);
+		return new ResponseEntity<String>("Usuario deletado com sucesso", HttpStatus.OK);
+
+	}
+
 }
