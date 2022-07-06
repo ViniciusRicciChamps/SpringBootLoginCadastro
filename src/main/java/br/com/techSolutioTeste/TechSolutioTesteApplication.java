@@ -9,7 +9,11 @@ public class TechSolutioTesteApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TechSolutioTesteApplication.class, args);
-		System.out.println(new BCryptPasswordEncoder().encode("1234"));
+		
+		/*
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(BCryptPasswordEncoder.BCryptVersion.$2A);
+		String result = encoder.encode("8744");
+		System.out.println(result);*/
 	}
 
 }

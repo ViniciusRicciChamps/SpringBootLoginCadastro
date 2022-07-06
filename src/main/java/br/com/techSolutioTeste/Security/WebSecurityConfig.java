@@ -14,8 +14,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-	
 	
 	 @Autowired
 	 private ImplementsUserDetailsService userDetailsService;
@@ -34,9 +32,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 	}
 
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+		auth
+		.userDetailsService(userDetailsService)
+		.passwordEncoder(new BCryptPasswordEncoder());
+		System.out.println(userDetailsService);
+		
+		/*
+		auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+		.withUser("vini")
+		.password("$2a$10$wO/dYA1F4X85ACk.qJ/x1urUjdoVY4rxmvu21CopxkRrUzR8kkR4C")
+		.roles("ADMIN");*/
 	}
 
 }
