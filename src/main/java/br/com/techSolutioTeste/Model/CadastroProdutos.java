@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import org.springframework.lang.NonNull;
+
 @Entity
 @SequenceGenerator(name = "seq_produtos", sequenceName = "seq_produtos", allocationSize = 1, initialValue = 1)
 public class CadastroProdutos implements Serializable {
@@ -18,8 +20,13 @@ public class CadastroProdutos implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_produtos")
 	private Long idProduto;
 	
+	@NonNull
 	private String nomeProduto;
+	
+	@NonNull
 	private String fornecedorProduto;
+	
+	@NonNull
 	private float valorProduto;
 	
 	

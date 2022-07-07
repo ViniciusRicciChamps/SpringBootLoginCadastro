@@ -21,7 +21,8 @@
 <body>
 	<div class="container">
 		<h1>Cadastrar Produtos</h1>
-		<form method="post" th:action="@{/adicionado}" th:object="${produtoobj}">
+		<th:block th:include="produtos/MensagemValidacao"></th:block>
+		<form method="post" action="adicionado" th:object="${produtoobj}">
 			<input class="form-control" type="text" name="nomeProduto"
 				style="margin: 10px;" placeholder="Nome do produto"><br>
 			<input class="form-control" type="text" name="fornecedorProduto"
