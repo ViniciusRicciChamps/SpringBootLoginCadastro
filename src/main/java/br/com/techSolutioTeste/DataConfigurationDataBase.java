@@ -20,7 +20,7 @@ public class DataConfigurationDataBase {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/database_solutio");
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("8744");
         return dataSource();
     }
 	

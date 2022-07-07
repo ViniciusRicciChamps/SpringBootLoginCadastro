@@ -13,9 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 public class Usuario implements UserDetails {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,6 +23,26 @@ public class Usuario implements UserDetails {
 
 	private String senha;
 
+	private String role;
+	
+	
+
+	public Usuario() {
+		
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public Usuario(String login) {
+		this.login = login;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -34,38 +51,38 @@ public class Usuario implements UserDetails {
 		this.id = id;
 	}
 
-	public String getLoginUsuario() {
+	public String getLogin() {
 		return login;
 	}
 
-	public void setLoginUsuario(String loginUsuario) {
-		this.login = loginUsuario;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
-	public String getSenhaUsuario() {
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenhaUsuario(String senhaUsuario) {
-		this.senha = senhaUsuario;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return this.senha;
+		return senha;
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return this.login;
+		return login;
 	}
 
 	@Override

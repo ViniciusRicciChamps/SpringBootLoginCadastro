@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="utf-8">
 <title>Produtos</title>
@@ -21,7 +21,7 @@
 <body>
 	<div class="container">
 		<h1>Cadastrar Produtos</h1>
-		<form method="post" th:action="@{/adicionado}">
+		<form method="post" th:action="@{/adicionado}" th:object="${produtoobj}">
 			<input class="form-control" type="text" name="nomeProduto"
 				style="margin: 10px;" placeholder="Nome do produto"><br>
 			<input class="form-control" type="text" name="fornecedorProduto"
@@ -29,9 +29,11 @@
 			<input class="form-control" type="number" name="valorProduto"
 				style="margin: 10px;" placeholder="Valor do produto"><br>
 			<input class="btn btn-primary" type="submit" style="margin: 10px;"
-				value="Cadastrar"><br> <input class="btn btn-secondary"
-				type="submit" style="margin: 10px;" value="Voltar"><br>
+				value="Cadastrar">
 		</form>
+		<a href="/produtos">
+			<button class="btn btn-danger">Voltar</button>
+		</a>
 	</div>
 
 </body>

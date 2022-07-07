@@ -1,6 +1,7 @@
 package br.com.techSolutioTeste.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,11 +15,12 @@ import br.com.techSolutioTeste.Repository.UsuarioRepository;
 public class ImplementsUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	private UsuarioRepository ur;
+	private UsuarioRepository usuarioRepository;
+	
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Usuario usuario = ur.findByLogin(username);
+		Usuario usuario = usuarioRepository.findByLogin(username);
 		
 		if(usuario == null) {
 			
