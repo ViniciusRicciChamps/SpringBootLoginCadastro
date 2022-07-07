@@ -1,12 +1,18 @@
 package br.com.techSolutioTeste.Controllers;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,23 +40,32 @@ public class ProdutosController {
 	public String formulario() {
 		return "produtos/formProduto";
 	}
-	
+
 	@RequestMapping(value = "/adicionado", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
-	public String formulario(@Validated CadastroProdutos cadastroProdutos , BindingResult result, RedirectAttributes attributes) {
-		if(result.hasErrors()) {
-			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
-			return "produtos/formProduto";
+	public ModelAndView formulario(@Valid CadastroProdutos cadastroProdutos, BindingResult result,
+			RedirectAttributes attributes) {
+		if (result.hasErrors()) {
+			ModelAndView modelAndView = new ModelAndView("produtos/formProduto");
+			Iterable<CadastroProdutos> iterableProdutos = produtoRepository.findAll();
+			modelAndView.addObject("produtos", iterableProdutos);
+			modelAndView.addObject("produtoobj", cadastroProdutos);
+			
+			List<String> msg = new ArrayList<String>();
+			for(ObjectError error : result.getAllErrors()) {
+				msg.add(error.getDefaultMessage());
+			}
+			 modelAndView.addObject("msg", msg);
+			return modelAndView;
 		}
-			produtoRepository.save(cadastroProdutos);
-			attributes.addFlashAttribute("mensagem", "Evento cadastrado com sucesso!");
-			return "produtos/formProduto";
-		
-		
-		
+		produtoRepository.save(cadastroProdutos);
+		ModelAndView AndView = new ModelAndView("produtos/formProduto");
+		Iterable<CadastroProdutos> iterableProdutos = produtoRepository.findAll();
+		AndView.addObject("produtos", iterableProdutos);
+		return AndView;
+
 	}
 
-	
 	@RequestMapping("/produtos")
 	@ResponseStatus(HttpStatus.OK)
 	public ModelAndView listaProdutos() {
@@ -66,7 +81,7 @@ public class ProdutosController {
 		ModelAndView modelAndView = new ModelAndView("produtos/telaPrincipal");
 		modelAndView.addObject("produtos", produtoRepository.findAll());
 		return modelAndView;
-		
+
 	}
 
 }

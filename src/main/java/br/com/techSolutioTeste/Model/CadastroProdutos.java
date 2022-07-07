@@ -7,8 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.lang.NonNull;
+
+
+
 
 @Entity
 @SequenceGenerator(name = "seq_produtos", sequenceName = "seq_produtos", allocationSize = 1, initialValue = 1)
@@ -20,14 +25,17 @@ public class CadastroProdutos implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_produtos")
 	private Long idProduto;
 	
-	@NonNull
+	@NotNull(message = "O nome do produto não poder ser nulo")
+	@NotEmpty(message = "O nome do produto não poder ser vazio")
 	private String nomeProduto;
 	
-	@NonNull
+	@NotNull(message = "O nome do fornecedor não poder ser nulo")
+	@NotEmpty(message = "O nome do fornecedor não poder ser vazio")
 	private String fornecedorProduto;
 	
-	@NonNull
-	private float valorProduto;
+	@NotNull(message = "O valor do produto não poder ser nulo")
+	@NotEmpty(message = "O valor do produto não poder ser vazio")
+	private String valorProduto;
 	
 	
 	
@@ -49,10 +57,10 @@ public class CadastroProdutos implements Serializable {
 	public void setFornecedorProduto(String fornecedorProduto) {
 		this.fornecedorProduto = fornecedorProduto;
 	}
-	public float getValorProduto() {
+	public String getValorProduto() {
 		return valorProduto;
 	}
-	public void setValorProduto(float valorProduto) {
+	public void setValorProduto(String valorProduto) {
 		this.valorProduto = valorProduto;
 	}
 	

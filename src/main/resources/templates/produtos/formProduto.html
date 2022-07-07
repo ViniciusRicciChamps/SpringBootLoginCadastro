@@ -21,15 +21,22 @@
 <body>
 	<div class="container">
 		<h1>Cadastrar Produtos</h1>
+		<br>
+		<br>
+		<div th:each = "m : ${msg}">
+		<span th:text = "${m}"></span>
+		</div>
+		
+		
 		<th:block th:include="produtos/MensagemValidacao"></th:block>
 		<form method="post" action="adicionado" th:object="${produtoobj}">
 			<input class="form-control" type="text" name="nomeProduto"
 				style="margin: 10px;" placeholder="Nome do produto"><br>
 			<input class="form-control" type="text" name="fornecedorProduto"
 				style="margin: 10px;" placeholder="Fornecedor do Produto"><br>
-			<input class="form-control" type="number" name="valorProduto"
+			<input class="form-control" type="text" name="valorProduto"
 				style="margin: 10px;" placeholder="Valor do produto"><br>
-			<input class="btn btn-primary" type="submit" style="margin: 10px;"
+			<input class="btn btn-primary" id="botaoValidar" type="submit" style="margin: 10px;"
 				value="Cadastrar">
 		</form>
 		<a href="/produtos">
